@@ -1,0 +1,44 @@
+{
+    "manifest_version": 2,
+    "name": "RE-Error",
+    "version": "0.1.0",
+    "description": "Intelligently auto-reloads pages on errors and notifies when resolved or stuck.",
+    "author": "Karl-FC",
+  
+    "icons": {
+      "48": "icons/re-error-48.png",
+      "96": "icons/re-error-96.png"
+    },
+  
+    "permissions": [
+      "storage",
+      "notifications",
+      "activeTab",
+      "<all_urls>"
+    ],
+  
+    "background": {
+      "scripts": ["background.js"]
+    },
+  
+    "browser_action": {
+      "default_icon": {
+        "16": "icons/re-error-disabled-16.png",
+        "32": "icons/re-error-disabled-32.png"
+      },
+      "default_title": "RE-Error (Disabled)",
+      "default_popup": "popup/popup.html"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content_scripts/reloader.js"],
+        "run_at": "document_idle"
+      }
+    ],
+  
+    "web_accessible_resources": [
+      "icons/*.png"
+    ]
+  }
